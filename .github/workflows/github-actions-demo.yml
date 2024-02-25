@@ -54,5 +54,5 @@ jobs:
         worker-runtime: python
         app-settings: |
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
-          PLAYWRIGHT_BROWSERS_PATH= /home/site/wwwroot/chromium-1097/chrome-linux/chrome
+          PLAYWRIGHT_BROWSERS_PATH=/home/site/wwwroot/chromium-1097/chrome-linux/chrome
           
