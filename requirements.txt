@@ -3,6 +3,5 @@
 # Manually managing azure-functions-worker may cause unexpected issues
 
 azure-functions==1.18.0
-playwright==1.41.2
 azure-storage-blob==12.19.0
 pandas==1.5.1
