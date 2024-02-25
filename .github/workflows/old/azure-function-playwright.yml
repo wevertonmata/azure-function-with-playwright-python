@@ -1,4 +1,4 @@
-name: Azure Function CI/CD
+name: Stackoverflow CI/CD
 
 on:
   push:
