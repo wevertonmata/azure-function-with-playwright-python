@@ -30,7 +30,7 @@ jobs:
 
     - name: Create and activate virtual environment
       run: |
-        py -m venv .venv
+        python -m venv .venv
         source .venv/bin/activate
 
     - name: Install dependencies
@@ -38,7 +38,7 @@ jobs:
 
     - name: Install Playwright
       run: |
-        py -m pip install playwright
+        python -m pip install playwright
         playwright install chromium
 
     - name: 'Run Azure Functions Action'
