@@ -41,8 +41,8 @@ def upload_to_blob(file_name,file_type,df):
     except Exception as err:
         return err
 
-@app.route(route="http_trigger")
-async def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
+@app.route(route="conn_blob")
+async def conn_blob(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     async with async_playwright() as p:
