@@ -7,26 +7,6 @@ import io
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
-@app.route(route="http_trigger")
-async def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
-
-    async with async_playwright() as p:
-        browser = await p.chromium.launch()
-        page = await browser.new_page()
-        await page.goto("http://playwright.dev")
-        title = await page.title()
-        await browser.close()
-        
-        d = d = {f'{title}': [1, 2], 'col2': [3, 4]}
-        df = pd.DataFrame(data=d)
-        upload_to_blob(title,"csv",df)
-
-        return func.HttpResponse(
-             f"Title: {title}",
-             status_code=200
-        )
-
 def get_details():
     connection_string = "BlobEndpoint=https://httpplaywright.blob.core.windows.net/;QueueEndpoint=https://httpplaywright.queue.core.windows.net/;FileEndpoint=https://httpplaywright.file.core.windows.net/;TableEndpoint=https://httpplaywright.table.core.windows.net/;SharedAccessSignature=sv=2022-11-02&ss=b&srt=sco&sp=rwdlaciyx&se=2025-12-03T00:34:46Z&st=2024-02-13T16:34:46Z&spr=https,http&sig=lXiCL5LzwMIW16vXWVOvFgGSAGMCk3QaB8faSBXvCIU%3D"
     container_name = 'pandas'
@@ -60,4 +40,23 @@ def upload_to_blob(file_name,file_type,df):
         return "Upload arquivo realizado com sucesso"
     except Exception as err:
         return err
-    
+
+@app.route(route="http_trigger")
+async def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
+
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        page = await browser.new_page()
+        await page.goto("http://playwright.dev")
+        title = await page.title()
+        await browser.close()
+        
+        d = d = {f'{title}': [1, 2], 'col2': [3, 4]}
+        df = pd.DataFrame(data=d)
+        upload_to_blob(title,"csv",df)
+
+        return func.HttpResponse(
+             f"Title: {title}",
+             status_code=200
+        )
