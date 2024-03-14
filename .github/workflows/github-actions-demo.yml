@@ -40,6 +40,9 @@ jobs:
       run: |
         python -m pip install playwright
         playwright install chromium
+    
+    # ls -al /home/runner/.cache/ms-playwright/
+
 
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
@@ -54,5 +57,5 @@ jobs:
         worker-runtime: python
         app-settings: |
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
-          PLAYWRIGHT_BROWSERS_PATH=/home/site/wwwroot/chromium-1097/chrome-linux/chrome
+          PLAYWRIGHT_BROWSERS_PATH=/usr/lib/playwright
           
